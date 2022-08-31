@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cinetic_app.apps.CineticAppConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

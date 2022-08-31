@@ -14,8 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from cinetic_app.views import *
+
+router = routers.DefaultRouter()
+router.register('empleado', Empleado_view, basename='empleado')
+router.register('vendeProductos', VendeProductos_view, basename='vendeProductos')
+router.register('vendeBoletas', VendeBoletas_view, basename='vendeBoletas')
+router.register('producto', Producto_view, basename='producto')
+router.register('combo', Combo_view, basename='combo')
+router.register('integraCombo', IntegraCombo_view, basename='integraCombo')
+router.register('listaCompras', ListaCompras_view, basename='listaCompras')
+router.register('pelicula', Pelicula_view, basename='pelicula')
+router.register('cinema', Cinema_view, basename='cinema')
+router.register('sala', Sala_view, basename='sala')
+router.register('funcion', Funcion_view, basename='funcion')
+router.register('boleta', Boleta_view, basename='boleta')
 
 urlpatterns = [
-    #    path('admin/', admin.site.urls),
+    path('', include(router.urls)),
 ]
