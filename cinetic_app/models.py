@@ -51,7 +51,7 @@ class Pelicula(models.Model):
     fecha_filmacion = models.DateField(auto_now=False, null=True)
     sinopsis = models.CharField(max_length=255)
     duracion = models.IntegerField()
-    caratula = models.FileField(upload_to='cinetic_app/caratula_peliculas/')
+    caratula = models.ImageField(upload_to='cinetic_app/caratula_peliculas/')
 
 class Cinema(models.Model):
     codigo_cinema = models.CharField(max_length=20, unique=True)
