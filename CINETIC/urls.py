@@ -20,12 +20,12 @@ from cinetic_app.views import *
 
 router = routers.DefaultRouter()
 router.register('empleado', Empleado_view, basename='empleado')
-router.register('vendeProductos', VendeProductos_view, basename='vendeProductos')
-router.register('vendeBoletas', VendeBoletas_view, basename='vendeBoletas')
+router.register('ventaProducto', VentaProducto_view, basename='vendeProductos')
+router.register('ventaBoletas', VendeBoletas_view, basename='vendeBoletas')
 router.register('producto', Producto_view, basename='producto')
 router.register('combo', Combo_view, basename='combo')
 router.register('integraCombo', IntegraCombo_view, basename='integraCombo')
-router.register('listaCompras', ListaCompras_view, basename='listaCompras')
+router.register('listaVentaProducto', ListaVentaProducto_view, basename='listaVentaProducto')
 router.register('pelicula', Pelicula_view, basename='pelicula')
 router.register('cinema', Cinema_view, basename='cinema')
 router.register('sala', Sala_view, basename='sala')
@@ -34,4 +34,5 @@ router.register('boleta', Boleta_view, basename='boleta')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('login', CustomAuthToken.as_view(), name='token'),
 ]
