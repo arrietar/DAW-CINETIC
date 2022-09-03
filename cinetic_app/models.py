@@ -32,7 +32,7 @@ class IntegraCombo(models.Model):
 
 class VentaProducto(models.Model):
     id_empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    fecha_venta = models.DateField(auto_now=False, null=True)
+    fecha_venta = models.DateField(auto_now_add=True, null=False)
 
 class ListaVentaProducto(models.Model):
     id_producto = models.ForeignKey(Producto, on_delete=models.PROTECT, null=True)
@@ -76,7 +76,7 @@ class Funcion(models.Model):
 
 class VentaBoleta(models.Model):
     id_empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT)
-    fecha_venta = models.DateTimeField(auto_now=False, null=True)
+    fecha_venta = models.DateTimeField(auto_now_add=True, null=False)
     total = models.IntegerField() # ¿Como se calcula?, CarlosA: no lo entiendo
 
 class Boleta(models.Model):
