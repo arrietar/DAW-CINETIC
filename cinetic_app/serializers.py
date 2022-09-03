@@ -35,9 +35,9 @@ class VentaProducto_serializer(serializers.ModelSerializer):
 
 class ListaVentaProducto_serializer(serializers.ModelSerializer):
     producto = Producto_serializer(read_only=True)
-    id_producto = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Producto.objects.all(), source='producto')
+    id_producto = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Producto.objects.all(), source='producto', required=False, allow_null=True)
     combo = Combo_serializer(read_only=True)
-    id_combo = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Combo.objects.all(), source='combo')
+    id_combo = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Combo.objects.all(), source='combo', required=False, allow_null=True)
     venta_producto = VentaProducto_serializer(read_only=True)
     id_venta_producto = serializers.PrimaryKeyRelatedField(write_only=True, queryset=VentaProducto.objects.all(), source='venta_producto')
     class Meta:
@@ -59,7 +59,7 @@ class Cinema_serializer(serializers.ModelSerializer):
 
 class Sala_serializer(serializers.ModelSerializer):
     cinema = Cinema_serializer(read_only=True)
-    id_cinema = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Cinema.objects.all(), source='cinema')
+    codigo_cinema = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Cinema.objects.all(), source='cinema')
     class Meta:
         model = Sala
         fields = '__all__'
