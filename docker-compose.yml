@@ -3,12 +3,12 @@ version: '3'
 services:
     api:
         build: .
-        container_name: cinetic-api
-        command: python manage.py runserver 0.0.0.0:8000
+        container_name: cinetic_api
+        command: python manage.py runserver 127.0.0.1:8000
         volumes: 
-            - db-data:/usr/app/cinetic_api
+            - .:/usr/app/cinetic_api
         ports:
             - 8000:8000
 
-volumes:
-    db-data:
+#volumes:
+#    db-data:

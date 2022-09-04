@@ -1,7 +1,7 @@
 ARG VERSION=3
 FROM python:${VERSION}
 
-#USER root
+USER root
 RUN mkdir -p /usr/app/cinetic_api
 WORKDIR /usr/app/cinetic_api
 COPY requirements.txt .
