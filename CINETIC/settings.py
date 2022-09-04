@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0(pe4-0^oi&j1&zm^*h==5$*e2qh%95pih6$02)97j+(ld2hyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #AUTH_USER_MODEL = 'cinetic_app.Empleado' # para habilitar la autenticacion
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
