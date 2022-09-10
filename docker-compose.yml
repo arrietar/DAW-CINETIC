@@ -3,6 +3,7 @@ version: '3'
 services:
     api:
         build: .
+        restart: always
         container_name: cinetic_api
         command: python manage.py runserver 127.0.0.1:8000
         volumes: 

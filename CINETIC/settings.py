@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0(pe4-0^oi&j1&zm^*h==5$*e2qh%95pih6$02)97j+(ld2hyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#AUTH_USER_MODEL = 'cinetic_app.Empleado' # para habilitar la autenticacion
+AUTH_USER_MODEL = 'cinetic_app.Empleado' # para habilitar la autenticacion
 USE_X_FORWARDED_HOST = True
 ALLOWED_HOSTS = ['*']
 
@@ -126,7 +126,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# REST_FRAMEWORK = { # para habilitar la autenticacion
-#         'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
-#         'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
-#     }
+REST_FRAMEWORK = { # para habilitar la autenticacion
+        'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+        'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
+    }

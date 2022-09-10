@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-#class Empleado(AbstractUser):
-class Empleado(models.Model):
+
+#class Empleado(models.Model):
+class Empleado(AbstractUser):
     identificacion = models.CharField(max_length=20, unique=True)
     nombres = models.CharField(max_length=50)
     apellidos = models.CharField(max_length=50)
