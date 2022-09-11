@@ -77,7 +77,7 @@ class Pelicula(models.Model):
     fecha_filmacion = models.DateField(auto_now=False, null=True)
     sinopsis = models.CharField(max_length=255)
     duracion = models.IntegerField()
-    caratula = models.ImageField(upload_to='static/caratula_peliculas/')
+    caratula = models.ImageField(upload_to='peliculas/')
 
     def __str__(self):
         return self.nombre_pelicula
