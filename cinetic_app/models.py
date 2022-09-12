@@ -62,6 +62,7 @@ class Pelicula(models.Model):
         ('RMT', 'Romantica'),
         ('DRM', 'Drama'),
         ('TRR', 'Terror'),
+        ('SPS', 'Suspenso')
     ]
     genero = models.CharField(max_length=3, choices=GENERO, default='ACC')
 
