@@ -99,6 +99,7 @@ class Sala(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.PROTECT)
     codigo_sala = models.CharField(max_length=20, unique=True)
     nombre_sala = models.CharField(max_length=50)
+    capacidad = models.IntegerField()
     TIPO_SALA = [
         ('2D', '2D'),
         ('3D', '3D'),
