@@ -1,7 +1,10 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from cinetic_app.models import *
 
+
 class Empleado_serializer(serializers.ModelSerializer):
+
     class Meta:
         model = Empleado
         fields = '__all__'
@@ -88,3 +91,4 @@ class Boleta_serializer(serializers.ModelSerializer):
     class Meta:
         model = Boleta
         fields = '__all__'
+

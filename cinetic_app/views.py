@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from cinetic_app.models import *
 from cinetic_app.serializers import *
 from rest_framework import viewsets, status
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -9,6 +7,22 @@ from rest_framework.response import Response
 class Empleado_view(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
     serializer_class = Empleado_serializer
+
+    def perform_create(self, serializer):
+        # Hash password but passwords are not required
+        if ('password' in self.request.data):
+            password = make_password(self.request.data['password'])
+            serializer.save(password=password, is_active=True)
+        else:
+            serializer.save()
+
+    def perform_update(self, serializer):
+        # Hash password but passwords are not required
+        if ('password' in self.request.data):
+            password = make_password(self.request.data['password'])
+            serializer.save(password=password)
+        else:
+            serializer.save()
 
 # Modulo de Productos y Combos
 
@@ -73,3 +87,4 @@ class CustomAuthToken(ObtainAuthToken):
         user.save()
         usuario = Empleado_serializer(user)
         return Response(usuario.data)
+
