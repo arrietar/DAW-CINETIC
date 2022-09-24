@@ -1,8 +1,11 @@
+from rest_framework.parsers import FormParser
+
 from cinetic_app.serializers import *
 from rest_framework import viewsets, status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.parsers import FormParser, MultiPartParser
 
 class Empleado_view(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
@@ -51,6 +54,14 @@ class ListaVentaProducto_view(viewsets.ModelViewSet):
 class Pelicula_view(viewsets.ModelViewSet):
     queryset = Pelicula.objects.all()
     serializer_class = Pelicula_serializer
+    parser_classes = (MultiPartParser, FormParser)
+
+    def perform_create(self, serializer):
+        if ('caratula' in self.request.data):
+            serializer.save(caratula=self.request.data.get('caratula'))
+        else:
+            serializer.save()
+
 
 class Cinema_view(viewsets.ModelViewSet):
     queryset = Cinema.objects.all()
