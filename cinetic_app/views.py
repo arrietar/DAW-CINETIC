@@ -1,11 +1,9 @@
-from rest_framework.parsers import FormParser
-
 from cinetic_app.serializers import *
 from rest_framework import viewsets, status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.parsers import FormParser, MultiPartParser
+
 
 class Empleado_view(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
@@ -13,7 +11,7 @@ class Empleado_view(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         # Hash password but passwords are not required
-        if ('password' in self.request.data):
+        if 'password' in self.request.data:
             password = make_password(self.request.data['password'])
             serializer.save(password=password, is_active=True)
         else:
@@ -21,7 +19,7 @@ class Empleado_view(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         # Hash password but passwords are not required
-        if ('password' in self.request.data):
+        if 'password' in self.request.data:
             password = make_password(self.request.data['password'])
             serializer.save(password=password)
         else:
@@ -54,14 +52,18 @@ class ListaVentaProducto_view(viewsets.ModelViewSet):
 class Pelicula_view(viewsets.ModelViewSet):
     queryset = Pelicula.objects.all()
     serializer_class = Pelicula_serializer
-    parser_classes = (MultiPartParser, FormParser)
 
-    def perform_create(self, serializer):
-        if ('caratula' in self.request.data):
-            serializer.save(caratula=self.request.data.get('caratula'))
-        else:
-            serializer.save()
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)
+        instance = self.get_object()
+        datos = request.data.copy()
+        if datos['caratula'] == '':
+            datos.pop('caratula')
 
+        serializer = self.get_serializer(instance, data=datos, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 class Cinema_view(viewsets.ModelViewSet):
     queryset = Cinema.objects.all()
